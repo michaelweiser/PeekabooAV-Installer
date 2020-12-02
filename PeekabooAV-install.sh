@@ -79,7 +79,7 @@ Welcome to the PeekabooAV installer
 
 we assume the following:
 - you want to install or update PeekabooAV
-- this is a Ubuntu 18.04 VM
+- this is a Ubuntu 20.04 VM
 - /etc/hostname is a valid FQDN
 - nothing else runs on this machine
 - you run this installer as root
