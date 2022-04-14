@@ -156,6 +156,9 @@ services:
     command: --setup-bucket
     env_file:
       - docker-compose.env
+    deploy:
+      mode: replicated
+      replicas: 3
   karton-logs:
     image: certpl/karton-system
     depends_on:
@@ -170,6 +173,9 @@ services:
       - karton-logs
     env_file:
       - docker-compose.env
+    deploy:
+      mode: replicated
+      replicas: 3
   karton-archive-extractor:
     # no :latest
     image: certpl/karton-archive-extractor:6c9fd2581a3261c18bc1b0fc3c692231a48fabf9
@@ -177,6 +183,9 @@ services:
       - karton-logs
     env_file:
       - docker-compose.env
+    deploy:
+      mode: replicated
+      replicas: 3
   karton-dashboard:
     image: certpl/karton-dashboard:8f5bdd94bed2ddff2ef4a826f8107a8ec11e8609
     depends_on:
@@ -200,6 +209,9 @@ services:
     entrypoint: /opt/extractor/bin/extractor-deduper
     env_file:
       - docker-compose.env
+    deploy:
+      mode: replicated
+      replicas: 3
   extractor-cache-responder:
     image: ghcr.io/michaelweiser/extractor:main
     depends_on:
@@ -207,6 +219,9 @@ services:
     entrypoint: /opt/extractor/bin/extractor-cache-responder
     env_file:
       - docker-compose.env
+    deploy:
+      mode: replicated
+      replicas: 3
   extractor-peekaboo-submitter:
     image: ghcr.io/michaelweiser/extractor:main
     depends_on:
@@ -217,6 +232,9 @@ services:
     depends_on:
       peekabooav:
         condition: service_healthy
+    deploy:
+      mode: replicated
+      replicas: 3
   extractor-poker:
     image: ghcr.io/michaelweiser/extractor:main
     depends_on:
@@ -224,6 +242,9 @@ services:
     entrypoint: /opt/extractor/bin/extractor-poker
     env_file:
       - docker-compose.env
+    deploy:
+      mode: replicated
+      replicas: 3
   extractor-peekaboo-tracker:
     image: ghcr.io/michaelweiser/extractor:main
     depends_on:
@@ -231,6 +252,9 @@ services:
     entrypoint: /opt/extractor/bin/extractor-peekaboo-tracker
     env_file:
       - docker-compose.env
+    deploy:
+      mode: replicated
+      replicas: 3
     depends_on:
       peekabooav:
         condition: service_healthy
@@ -241,3 +265,6 @@ services:
     entrypoint: /opt/extractor/bin/extractor-correlator
     env_file:
       - docker-compose.env
+    deploy:
+      mode: replicated
+      replicas: 3
