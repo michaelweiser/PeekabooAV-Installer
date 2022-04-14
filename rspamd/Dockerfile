@@ -6,6 +6,7 @@ RUN apk add rspamd \
 
 COPY peekaboo-integration/*.conf /etc/rspamd/local.d/
 COPY peekaboo-integration/peekaboo.lua /usr/share/rspamd/lualib/lua_scanners/
+COPY peekaboo-integration/extractor.lua /usr/share/rspamd/lualib/lua_scanners/
 COPY peekaboo-integration/integration.patch /root/
 
 RUN patch -t -p1 < /root/integration.patch && \

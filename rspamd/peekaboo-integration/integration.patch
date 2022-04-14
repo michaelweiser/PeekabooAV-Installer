@@ -60,11 +60,12 @@ diff --git /usr/share/rspamd/lualib/lua_scanners/init.lua /usr/share/rspamd/lual
 index 8c0f18caa..9ceab7663 100644
 --- /usr/share/rspamd/lualib/lua_scanners/init.lua
 +++ /usr/share/rspamd/lualib/lua_scanners/init.lua
-@@ -49,6 +50,7 @@
+@@ -49,6 +50,8 @@
  require_scanner('p0f')
  require_scanner('razor')
  require_scanner('pyzor')
 +require_scanner('peekaboo')
++require_scanner('extractor')
  
  exports.add_scanner = function(name, t, conf_func, check_func)
    assert(type(conf_func) == 'function' and type(check_func) == 'function',
