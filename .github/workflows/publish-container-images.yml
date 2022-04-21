@@ -1,0 +1,32 @@
+name: Build and publish PeekabooAV-specific container images
+
+on:
+  push:
+    branches: [ master ]
+    tags: [ 'v*.*.*' ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  # PeekabooAV image is built by the PeekabooAV repository CI/CD
+
+  publish-rspamd:
+    uses: ./.github/workflows/container-image-publish.yml
+    with:
+      imagename: michaelweiser/peekabooav-rspamd
+      builddir: rspamd
+
+  publish-postfix:
+    uses: ./.github/workflows/container-image-publish.yml
+    with:
+      imagename: michaelweiser/peekabooav-postfix
+      builddir: postfix
+
+  publish-cortex-setup:
+    uses: ./.github/workflows/container-image-publish.yml
+    with:
+      imagename: michaelweiser/peekabooav-cortex-setup
+      builddir: cortex_setup
