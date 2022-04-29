@@ -1,0 +1,32 @@
+apiVersion: v2
+version: 0.1.3
+appVersion: 2.1
+name: peekabooav-pipeline
+
+dependencies:
+  - name: opensearch
+    version: 1.10.0
+    repository: https://opensearch-project.github.io/helm-charts/
+  - name: mariadb
+    version: 10.5.0
+    repository: https://charts.bitnami.com/bitnami
+  - name: cortex
+    version: 0.3.2
+    repository: https://michaelweiser.github.io/helm-cortex/
+  - name: cortex-setup
+    version: 0.1.3
+    repository: https://michaelweiser.github.io/PeekabooAV-Installer/cortex-setup/
+  - name: peekabooav
+    version: 0.1.7
+    repository: https://michaelweiser.github.io/PeekabooAV-Installer/peekabooav/
+  - name: rspamd
+    version: 0.1.4
+    repository: https://michaelweiser.github.io/PeekabooAV-Installer/rspamd/
+  - name: postfix
+    version: 0.1.2
+    repository: https://michaelweiser.github.io/PeekabooAV-Installer/postfix/
+    alias: postfix-tx
+  - name: postfix
+    version: 0.1.2
+    repository: https://michaelweiser.github.io/PeekabooAV-Installer/postfix/
+    alias: postfix-rx
