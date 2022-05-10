@@ -1,5 +1,5 @@
 apiVersion: v2
-version: 0.1.4
+version: 0.1.5
 appVersion: 2.1
 name: peekabooav-pipeline
 description: |
@@ -26,10 +26,10 @@ dependencies:
     version: 0.1.4
     repository: https://michaelweiser.github.io/PeekabooAV-Installer/
   - name: postfix
-    version: 0.1.2
+    version: 0.1.3
     repository: https://michaelweiser.github.io/PeekabooAV-Installer/
     alias: postfix-tx
   - name: postfix
-    version: 0.1.2
+    version: 0.1.3
     repository: https://michaelweiser.github.io/PeekabooAV-Installer/
     alias: postfix-rx
