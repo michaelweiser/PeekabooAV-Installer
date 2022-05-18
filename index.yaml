@@ -22,6 +22,44 @@ entries:
     urls:
     - https://github.com/michaelweiser/PeekabooAV-Installer/releases/download/peekabooav-0.1.8/peekabooav-0.1.8.tgz
     version: 0.1.8
+  peekabooav-pipeline:
+  - apiVersion: v2
+    appVersion: "2.1"
+    created: "2022-05-18T10:45:50.404109838Z"
+    dependencies:
+    - name: opensearch
+      repository: https://opensearch-project.github.io/helm-charts/
+      version: 1.10.0
+    - name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.5.0
+    - name: cortex
+      repository: https://michaelweiser.github.io/helm-cortex/
+      version: 0.3.2
+    - name: cortex-setup
+      repository: https://michaelweiser.github.io/PeekabooAV-Installer/
+      version: 0.1.4
+    - name: peekabooav
+      repository: https://michaelweiser.github.io/PeekabooAV-Installer/
+      version: 0.1.8
+    - name: rspamd
+      repository: https://michaelweiser.github.io/PeekabooAV-Installer/
+      version: 0.1.5
+    - alias: postfix-tx
+      name: postfix
+      repository: https://michaelweiser.github.io/PeekabooAV-Installer/
+      version: 0.1.4
+    - alias: postfix-rx
+      name: postfix
+      repository: https://michaelweiser.github.io/PeekabooAV-Installer/
+      version: 0.1.4
+    description: 'A Helm chart for deploying a PeekabooAV pipeline including postfix,
+      rspamd and cortex on Kubernetes. '
+    digest: 922a644bff10872202d869126946836e1feed24f5c6fbc09252411628f59718a
+    name: peekabooav-pipeline
+    urls:
+    - https://github.com/michaelweiser/PeekabooAV-Installer/releases/download/peekabooav-pipeline-0.1.6/peekabooav-pipeline-0.1.6.tgz
+    version: 0.1.6
   postfix:
   - apiVersion: v2
     appVersion: "2.1"
@@ -44,4 +82,4 @@ entries:
     urls:
     - https://github.com/michaelweiser/PeekabooAV-Installer/releases/download/rspamd-0.1.5/rspamd-0.1.5.tgz
     version: 0.1.5
-generated: "2022-05-18T10:44:15.341056115Z"
+generated: "2022-05-18T10:45:50.404128938Z"
