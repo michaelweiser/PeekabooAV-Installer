@@ -1,0 +1,47 @@
+apiVersion: v1
+entries:
+  cortex-setup:
+  - apiVersion: v2
+    appVersion: "2.1"
+    created: "2022-05-18T10:44:15.010659892Z"
+    description: A Helm chart for setting up Cortex using a setup job in Kubernetes
+    digest: 964f1b130fbdc10034c4d77027a6479c5e7fe8a010ba4392ee9cf789132744ab
+    name: cortex-setup
+    type: application
+    urls:
+    - https://github.com/michaelweiser/PeekabooAV-Installer/releases/download/cortex-setup-0.1.4/cortex-setup-0.1.4.tgz
+    version: 0.1.4
+  peekabooav:
+  - apiVersion: v2
+    appVersion: "2.1"
+    created: "2022-05-18T10:44:15.11974528Z"
+    description: A Helm chart for deploying PeekabooAV to Kubernetes
+    digest: 3b0cc5c95a763b6569d368fe536fbfb19984105eac8a14e901065507edd29b0b
+    name: peekabooav
+    type: application
+    urls:
+    - https://github.com/michaelweiser/PeekabooAV-Installer/releases/download/peekabooav-0.1.8/peekabooav-0.1.8.tgz
+    version: 0.1.8
+  postfix:
+  - apiVersion: v2
+    appVersion: "2.1"
+    created: "2022-05-18T10:44:15.22691071Z"
+    description: A Helm chart for deploying postfix for PeekabooAV on Kubernetes
+    digest: 9b2aaaffcd33add21d8f6c310998f2a38888f31fa4339f0c60171e9059070dbf
+    name: postfix
+    type: application
+    urls:
+    - https://github.com/michaelweiser/PeekabooAV-Installer/releases/download/postfix-0.1.4/postfix-0.1.4.tgz
+    version: 0.1.4
+  rspamd:
+  - apiVersion: v2
+    appVersion: "2.1"
+    created: "2022-05-18T10:44:15.341045814Z"
+    description: A Helm chart for deploying an rspamd for Peekaboo on Kubernetes
+    digest: 5782f5a9a0e9786e68e94f07f6bbb31aae94457a3cc58644bb29adb990e00ef9
+    name: rspamd
+    type: application
+    urls:
+    - https://github.com/michaelweiser/PeekabooAV-Installer/releases/download/rspamd-0.1.5/rspamd-0.1.5.tgz
+    version: 0.1.5
+generated: "2022-05-18T10:44:15.341056115Z"
