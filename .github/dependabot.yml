@@ -4,3 +4,19 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "docker"
+    directory: "/rspamd"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "docker"
+    directory: "/postfix"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "docker"
+    directory: "/cortex_setup"
+    schedule:
+      interval: "daily"
