@@ -181,17 +181,29 @@
       apt:
         name: tcpdump
         state: latest
+
+    - name: Look for tcpdump install location
+      find:
+        patterns:
+          - tcpdump
+        paths:
+          - /usr/sbin
+          - /usr/bin
+        recurse: no
+      register: tcpdump
+
     - name: Restrict access to tcpdump
       file:
-        path: /usr/sbin/tcpdump
+        path: "{{ tcpdump.files[0].path }}"
         # cuckoo stats the sniffer during configuration initialisation so we
         # need r+x for group cuckoo here
         mode: 0750
         owner: root
         group: cuckoo
+
     - name: Set capability
       capabilities:
-        path: /usr/sbin/tcpdump
+        path: "{{ tcpdump.files[0].path }}"
         capability: cap_net_raw,cap_net_admin=eip
         state: present
 
@@ -225,9 +237,6 @@
     - name: Install Cuckoo system dependencies
       apt:
         name:
-          - python
-          - python-dev
-          - mongodb
           - libffi-dev
           - libssl-dev
           - libjpeg-dev
@@ -236,6 +245,53 @@
           - build-essential
           # required to install mysql python module in venv using pip
           - libmysqlclient-dev
+
+    - name: Install python and Mongo DB for Ubuntu < 21
+      apt:
+        name:
+          - python
+          - python-dev
+          - mongodb
+      when: ansible_lsb.id == "Ubuntu" and ansible_lsb.major_release | int < 21
+
+    # Ubuntu 22.04 no longer has a mongodb in the distro. So we install from
+    # the vendor repo.
+    - name: Add MongoDB repository GPG key for Ubuntu >= 21
+      get_url:
+        url: https://pgp.mongodb.com/server-5.0.asc
+        dest: /etc/apt/trusted.gpg.d/mongodb-5.0.asc
+      when: ansible_lsb.id == "Ubuntu" and ansible_lsb.major_release | int >= 21
+
+    # MongoDB from focal depends on libssl1.1 which is also no longer in jammy :(
+    - name: Add focal security repository libssl1.1 for mongodb for Ubuntu >= 21
+      apt_repository:
+        repo: deb http://security.ubuntu.com/ubuntu focal-security main
+        state: present
+      when: ansible_lsb.id == "Ubuntu" and ansible_lsb.major_release | int >= 21
+
+    - name: Add MongoDB repository for Ubuntu >= 21
+      apt_repository:
+        # seemingly no server for jammy (yet?)
+        repo: deb https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse
+        state: present
+      when: ansible_lsb.id == "Ubuntu" and ansible_lsb.major_release | int >= 21
+
+    # Ubuntu 20.04 had already renamed the package but contained a redirect
+    # from python to python2 that later versions then dropped.
+    - name: Install python and Mongo DB for Ubuntu >= 21
+      apt:
+        name:
+          - python2
+          - python2-dev
+          - mongodb-org
+      when: ansible_lsb.id == "Ubuntu" and ansible_lsb.major_release | int >= 21
+
+    - name: Start and enable MongoDB for Ubuntu >= 21
+      systemd:
+        name: mongod
+        enabled: yes
+        state: started
+      when: ansible_lsb.id == "Ubuntu" and ansible_lsb.major_release | int >= 21
 
     - name: Install virtualenv command for Ubuntu < 20
       apt:

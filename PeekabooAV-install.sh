@@ -184,7 +184,7 @@ if ! apt-get install -y software-properties-common ; then
 fi
 
 # multiverse also adds universe and script does an apt-get update as well
-if ! apt-add-repository multiverse ; then
+if ! apt-add-repository -y multiverse ; then
 	echo "ERROR: universe/multiverse repositories cannot be added" >&2
 	exit 1
 fi
